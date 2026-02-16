@@ -2,25 +2,86 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #0f0f0f;
+  /* Miami Vice palette — cyan + hot pink */
+  --gold: #00d4ff;
+  --gold-hover: #00b8e6;
+  --gold-muted: rgba(0, 212, 255, 0.12);
+  --vice-pink: #f6007b;
+  --vice-pink-hover: #d4006a;
+  --surface: #f8f8f8;
+  --surface-elevated: #ffffff;
+  --border: #e5e5e5;
+  --radius: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.25rem;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.06), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.06), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.06), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-gold: var(--gold);
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-heading), var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Miami Vice accent utilities (gold = cyan) */
+.bg-gold {
+  background-color: var(--gold);
+}
+.bg-gold:hover {
+  background-color: var(--gold-hover);
+}
+.hover\:bg-gold-hover:hover {
+  background-color: var(--gold-hover);
+}
+.border-gold {
+  border-color: var(--gold);
+}
+.text-gold {
+  color: var(--gold);
+}
+.focus-ring-gold:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(--gold);
+}
+.text-vice-pink {
+  color: var(--vice-pink);
+}
+.bg-vice-pink {
+  background-color: var(--vice-pink);
+}
+.bg-vice-pink:hover {
+  background-color: var(--vice-pink-hover);
+}
+.hover\:bg-vice-pink-hover:hover {
+  background-color: var(--vice-pink-hover);
+}
+
+.font-heading {
+  font-family: var(--font-heading), var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Section label — small uppercase above headings */
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
 }
