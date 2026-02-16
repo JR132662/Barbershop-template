@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Locale } from "@/lib/i18n";
 import type { Messages } from "@/lib/i18n";
 import { siteConfig } from "@/config/site";
+import { SocialIcons } from "@/components/SocialIcons";
 
 export function Footer({
   locale,
@@ -15,33 +16,20 @@ export function Footer({
 
   return (
     <footer className="border-t border-[var(--gold)]/30 bg-gray-900 text-gray-300">
-      <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
-        {/* App download placeholder */}
-        {"downloadApp" in footer && footer.downloadApp && (
-          <div className="mb-10 text-center">
-            <p className="text-sm font-medium text-gray-400">
-              {footer.downloadApp}
-            </p>
-            <div className="mt-3 flex justify-center gap-4">
-              <span className="inline-flex h-10 items-center rounded-xl border border-[var(--gold)]/30 px-4 text-sm text-gray-500">
-                App Store
-              </span>
-              <span className="inline-flex h-10 items-center rounded-xl border border-[var(--gold)]/30 px-4 text-sm text-gray-500">
-                Google Play
-              </span>
-            </div>
-          </div>
-        )}
-
-        <div className="flex flex-col gap-10 sm:flex-row sm:items-start sm:justify-between">
-          <div>
-            <p className="font-heading text-lg font-semibold text-white">
+      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+          {/* Brand */}
+          <div className="sm:col-span-2 lg:col-span-1">
+            <p className="font-heading text-xl font-semibold text-white">
               {siteConfig.businessName}
             </p>
-            <p className="mt-2 max-w-xs text-sm leading-relaxed text-gray-400">
+            <p className="mt-3 max-w-xs text-sm leading-relaxed text-gray-400">
               {footer.tagline}
             </p>
+            <SocialIcons className="mt-5" />
           </div>
+
+          {/* Quick Links */}
           {"links" in footer && footer.links && (
             <div>
               <h3 className="text-xs font-semibold uppercase tracking-widest text-vice-pink">
@@ -91,10 +79,53 @@ export function Footer({
               </nav>
             </div>
           )}
+
+          {/* Contact Info */}
+          <div>
+            <h3 className="text-xs font-semibold uppercase tracking-widest text-vice-pink">
+              {locale === "en" ? "Contact" : "Contacto"}
+            </h3>
+            <div className="mt-4 flex flex-col gap-3 text-sm">
+              <a
+                href={`tel:${siteConfig.phone.replace(/\D/g, "")}`}
+                className="text-gray-400 transition hover:text-gold"
+              >
+                {siteConfig.phone}
+              </a>
+              <a
+                href={`mailto:${siteConfig.email}`}
+                className="text-gray-400 transition hover:text-gold"
+              >
+                {siteConfig.email}
+              </a>
+              <p className="text-gray-500">
+                {siteConfig.address.line1}
+                <br />
+                {siteConfig.address.city}, {siteConfig.address.state} {siteConfig.address.zip}
+              </p>
+            </div>
+          </div>
+
+          {/* Hours */}
+          <div>
+            <h3 className="text-xs font-semibold uppercase tracking-widest text-vice-pink">
+              {locale === "en" ? "Hours" : "Horario"}
+            </h3>
+            <div className="mt-4 flex flex-col gap-1.5 text-sm text-gray-400">
+              <p>Mon – Fri: {siteConfig.hours.monday}</p>
+              <p>Sat: {siteConfig.hours.saturday}</p>
+              <p className="text-gray-500">Sun: {siteConfig.hours.sunday}</p>
+            </div>
+          </div>
         </div>
 
-        <div className="mt-10 border-t border-[var(--gold)]/30 pt-6 text-center text-sm text-gray-500">
-          © {new Date().getFullYear()} {siteConfig.businessName}. {footer.rights}
+        <div className="mt-12 border-t border-[var(--gold)]/20 pt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
+          <p className="text-sm text-gray-500">
+            &copy; {new Date().getFullYear()} {siteConfig.businessName}. {footer.rights}
+          </p>
+          <p className="text-xs text-gray-600">
+            {locale === "en" ? "Designed with care" : "Dise\u00f1ado con dedicaci\u00f3n"}
+          </p>
         </div>
       </div>
     </footer>

@@ -25,7 +25,7 @@ export const siteConfig = {
   shortDescription:
     "Barber shop in Miami Beach, Florida. Quality fades, beard trims, and classic grooming. Walk-ins welcome.",
   /** Year founded (optional — shows "Since 20XX" on About if set) */
-  foundedYear: undefined as number | undefined,
+  foundedYear: 2018 as number | undefined,
   /** Physical address */
   address: {
     line1: "6972 Bay Dr",
@@ -38,7 +38,7 @@ export const siteConfig = {
   /** Email for contact form / inquiries */
   email: "hello@fademasters.com",
   /** Optional parking info */
-  parkingInfo: "",
+  parkingInfo: "Free street parking available on Bay Dr",
   /** Hours (for display) — update with actual hours from client */
   hours: {
     monday: "11:00 AM – 7:00 PM",
@@ -46,28 +46,49 @@ export const siteConfig = {
     wednesday: "11:00 AM – 7:00 PM",
     thursday: "11:00 AM – 7:00 PM",
     friday: "11:00 AM – 7:00 PM",
-    saturday: "11:00 AM – 6:00 PM",
+    saturday: "6:00 AM – 6:00 PM",
     sunday: "Closed",
   },
   /** Social links (leave empty to hide) */
   social: {
-    facebook: "",
-    instagram: "",
-    twitter: "",
+    instagram: "https://instagram.com/fademasters",
+    facebook: "https://facebook.com/fademasters",
+    tiktok: "https://tiktok.com/@fademasters",
+    yelp: "https://yelp.com/biz/fade-masters-miami-beach",
   },
   /** Calendly/Cal.com/Google Booking URL. Empty = show "call us" / contact form. */
   bookingUrl: "",
   /** Optional: embed URL for calendar iframe */
   calendarEmbedUrl: "",
+  /** Announcement bar (leave message empty to hide) */
+  announcement: {
+    message: "New clients get 15% off their first visit!",
+    linkText: "Book now",
+  },
   /** Team — barbers from Fade Masters (update imageUrl when photos available) */
   team: [
-    { name: "George", role: "Barber", imageUrl: "" },
-    { name: "Marcel", role: "Barber", imageUrl: "" },
-    { name: "Jumbo", role: "Barber", imageUrl: "" },
-  ] as { name: string; role: string; imageUrl?: string }[],
+    {
+      name: "George",
+      role: "Master Barber & Owner",
+      bio: "15+ years behind the chair. Specializes in fades and precision razor work.",
+      imageUrl: "",
+    },
+    {
+      name: "Marcel",
+      role: "Senior Barber",
+      bio: "Expert in beard sculpting and classic styles. Known for his attention to detail.",
+      imageUrl: "",
+    },
+    {
+      name: "Jumbo",
+      role: "Barber",
+      bio: "Creative cuts and modern styles. Great with kids and first-timers.",
+      imageUrl: "",
+    },
+  ] as { name: string; role: string; bio?: string; imageUrl?: string }[],
 } as const;
 
-/** Service IDs — must match keys in messages > services. Reorder or add/remove as needed. */
+/** Service definitions with prices — must match keys in messages > services. */
 export const serviceIds = [
   "mens-haircut",
   "beard-trim",
@@ -78,5 +99,17 @@ export const serviceIds = [
   "fade",
   "classic-shave",
 ] as const;
+
+/** Prices for each service (in USD). Update per client. */
+export const servicePrices: Record<string, number> = {
+  "mens-haircut": 35,
+  "beard-trim": 20,
+  "hot-towel-shave": 30,
+  "hair-and-beard": 50,
+  "kids-cut": 25,
+  "senior-cut": 25,
+  "fade": 40,
+  "classic-shave": 25,
+};
 
 export type ServiceId = (typeof serviceIds)[number];
