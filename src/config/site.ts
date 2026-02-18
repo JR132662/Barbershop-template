@@ -1,11 +1,21 @@
+import type { HomeSectionId } from "@/config/sections";
+
 /**
  * AJILE Development — Barbershop Template
- * PLUG-AND-PLAY: Edit this file for each client. Change business name, address,
- * hours, phone, and optional team. The rest of the site (copy, sections) is
- * driven by messages (en.json / es.json) so one template works for every brand.
+ * BUSINESS INFO ONLY: Edit this file for each client. Change business name, address,
+ * hours, phone, and optional team. The rest of the site (copy, sections, navbar, footer)
+ * is driven by messages and src/config/sections.ts.
+ *
+ * To override home section order: set homeSections to an array of section IDs (see sections.ts).
+ * To change navbar or footer: edit headerVariant and footerVariant in src/config/sections.ts.
  */
 
 export const siteConfig = {
+  /**
+   * Optional: override default home page sections. List section IDs in desired order.
+   * Omit to use default order from src/config/sections.ts.
+   */
+  homeSections: undefined as readonly HomeSectionId[] | undefined,
   /** Business / shop name */
   businessName: "Fade Masters Barber Shop",
   /**
@@ -80,3 +90,4 @@ export const serviceIds = [
 ] as const;
 
 export type ServiceId = (typeof serviceIds)[number];
+export type SiteConfig = typeof siteConfig;

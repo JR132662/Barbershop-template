@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getMessages } from "@/lib/i18n";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
+import { HeaderPicker } from "@/components/Header";
+import { FooterPicker } from "@/components/Footer";
 import { siteConfig } from "@/config/site";
 import type { Locale } from "@/lib/i18n";
 
@@ -42,9 +42,9 @@ export default async function LocaleLayout({
 
   return (
     <>
-      <Header locale={locale as Locale} messages={messages} />
+      <HeaderPicker locale={locale as Locale} messages={messages} />
       <main className="min-h-[calc(100vh-10rem)] flex flex-col">{children}</main>
-      <Footer locale={locale as Locale} messages={messages} />
+      <FooterPicker locale={locale as Locale} messages={messages} />
     </>
   );
 }
